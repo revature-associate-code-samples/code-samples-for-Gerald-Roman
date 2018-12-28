@@ -17,12 +17,13 @@
 .c9/
 *.launch
 .settings/
-
+.gitkeep
 *.settings/
 .recommenders
 *.sublime-workspace
 
 # IDE - VSCode
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
