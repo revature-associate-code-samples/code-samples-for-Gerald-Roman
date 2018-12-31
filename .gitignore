@@ -21,9 +21,11 @@
 *.settings/
 .recommenders
 *.sublime-workspace
+*/Servers/
+*/target/
 
 # IDE - VSCode
-.vscode
+Project-1/.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
