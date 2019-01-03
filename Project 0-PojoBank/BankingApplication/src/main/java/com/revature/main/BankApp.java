@@ -56,7 +56,6 @@ public class BankApp {
 				run();
 				break;
 			}
-			// read.close();
 		} catch (InputMismatchException e) {
 			System.out.println("Sorry please enter a number");
 			run();
@@ -260,7 +259,7 @@ public class BankApp {
 			a.setAccType(2);
 			break;
 		default:
-			System.out.println("error");// change
+			System.out.println("error");
 		}
 		a.setOwnerID(id);
 		System.out.println(a.getAccType());

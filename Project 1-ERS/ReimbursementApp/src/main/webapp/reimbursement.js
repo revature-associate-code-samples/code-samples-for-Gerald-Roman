@@ -1,16 +1,16 @@
 window.onload = function () {
-	// loadHomeView();
 	loadLoginView();
+	loadManagerView();
 	$('#loginNav').on('click', loadLoginView);
 	$('#homeNav').on('click', loadHomeView);
 	$('#StatusNav').on('click', loadAuthorView);
 	$('#SubmitNav').on('click', loadSubmitionView);
-	loadManagerView();
-	// loadStatusView()
-	// loadAuthorView()
-
 }
-/** ***************************************************************************** */
+/********************************************************************************/
+/* 	Loads login view and validates user input. Redirects to the correct page 
+	depending on user role.*/
+/********************************************************************************/
+
 function loadLoginView() {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
@@ -39,8 +39,10 @@ function validateUser() {
 	console.log(toSend);
 	xhr.send(toSend);
 }
-/** ***************************************************************************** */
-
+/********************************************************************************/
+/* 	Loads the home view for the employee. Employee can see add a reimbursement, 
+	view past and current reimbursements*/
+/********************************************************************************/
 function loadHomeView() {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
@@ -49,7 +51,6 @@ function loadHomeView() {
 			$('#btnReimb').on('click', addReimbursement)
 		}
 	}
-	// xhr.open("GET", "home.view", true);
 	xhr.open("GET", "employee.view", true);
 	xhr.send();
 }
@@ -101,10 +102,10 @@ function loadSubmitionView() {
 	xhr.send();
 
 }
-
-/*
- * *****************************************************************************
- */
+/********************************************************************************/
+/*	Loads manager view if the user id is a manager. Managers can see all 
+	reimbursements, accepts or decline requests. */
+/********************************************************************************/
 function loadManagerView() {
 	console.log("before xhr");
 	var xhr = new XMLHttpRequest();
@@ -262,11 +263,8 @@ function refreshStatus() {
 			}
 			$("#reimInfo tr").remove();
 			loadReimbursements();
-
 		}
-
 	}
-
 	xhr.open("GET", "manager", true);
 	xhr.send();
 
@@ -304,7 +302,6 @@ function reimburseLists(reims) {
 			break;
 	}
 	var submitted = new Date(reims.submitted);
-	//sub = submitted.getDate() + submitted.getDay()
 	var resolver = new Date(reims.resolver);
 
 	var info = $(`<tr>
@@ -317,8 +314,7 @@ function reimburseLists(reims) {
 			
 			<td>${reims.resolved}</td>
 			<td>${resolver}</td>
-			
-			
+
 			<td>
 			<button class="btn btn-primary" onclick="updateStatus(${reims.id},0)">Denied</button>
 			<button class="btn btn-primary" onclick="updateStatus(${reims.id},2)">Aproved</button>
@@ -326,37 +322,25 @@ function reimburseLists(reims) {
 			</tr>
 			`)
 	$('#reimInfo').append(info);
-
 }
 
 function updateStatus(id, statusId) {
 
 	var stat = {
-
 		id, statusId
-
 	}
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function () {
 
 		if (xhr.readyState == 4 && xhr.status == 200) {
-
 			$(`statusId${id}`).html(statusId);
 			refreshStatus();
-
 		}
-
 	}
-
 	xhr.open("POST", "reimbursement", true);
-	//xhr.open("PUT", "login", true);
 	xhr.setRequestHeader("Content-type", "application/json");
 	var toSend = JSON.stringify(stat);
 	console.log(toSend);
 	xhr.send(toSend);
-
 }
-/** ***************************************************************************** */
-
-

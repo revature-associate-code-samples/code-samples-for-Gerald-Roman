@@ -13,7 +13,7 @@ import com.fanatics.repository.UserRepository;
 public class UserService {
 	@Autowired
 	private UserRepository repo;
-	
+
 	/**
 	 * 
 	 */
@@ -42,19 +42,18 @@ public class UserService {
 		System.out.println(user);
 		return user;
 	}
-	
+
 	public User getByUsername(String username) {
-        User u = repo.findByUsernameLikeIgnoreCase(username);
-        return u;
-    }
-    
-    public User validateUser(User u, String password) {
-        if (u.getPassword().equals(password)) {
-            return u;
-        }
-        else {
-            return null;
-        }
-    }
+		User u = repo.findByUsernameLikeIgnoreCase(username);
+		return u;
+	}
+
+	public User validateUser(User u, String password) {
+		if (u.getPassword().equals(password)) {
+			return u;
+		} else {
+			return null;
+		}
+	}
 
 }

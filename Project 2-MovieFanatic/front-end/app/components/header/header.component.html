@@ -1,38 +1,40 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="brand" routerLink="/main">
-      <img src="/assets/favicon.png" width="60" height="60"/>Movie Fanatics</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-      <div>
-        <span *ngIf="this.loginService.isLoggedIn()">
-          <a routerLink="/profile-view" class="FullName">{{ this.loginService.getFullName() }}</a>
-          &nbsp;&bull;&nbsp;
-          <a routerLink="{{this.router.url}}" (click)="logout()">Logout</a>
-          &nbsp;&bull;&nbsp;
-          <a routerLink="#" data-toggle="modal" data-target="#creditModal">Credits</a>
-        </span>
-        <span *ngIf="!this.loginService.isLoggedIn()">
-          <a routerLink="/edit-profile">Sign up</a>
-          &nbsp;&bull;&nbsp;
-          <a routerLink="#" data-toggle="modal" data-target="#myModal">Login</a>
-          &nbsp;&bull;&nbsp;
-          <a routerLink="#" data-toggle="modal" data-target="#creditModal">Credits</a>
-        </span>
-        &nbsp;
-      </div>
+  <a class="brand" routerLink="/main">
+    <img src="/assets/favicon.png" width="60" height="60" />Movie Fanatics</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <div>
+      <span *ngIf="this.loginService.isLoggedIn()">
+        <a routerLink="/profile-view" class="FullName">{{ this.loginService.getFullName() }}</a>
+        &nbsp;&bull;&nbsp;
+        <a routerLink="{{this.router.url}}" (click)="logout()">Logout</a>
+        &nbsp;&bull;&nbsp;
+        <a routerLink="#" data-toggle="modal" data-target="#creditModal">Credits</a>
+      </span>
+      <span *ngIf="!this.loginService.isLoggedIn()">
+        <a routerLink="/edit-profile">Sign up</a>
+        &nbsp;&bull;&nbsp;
+        <a routerLink="#" data-toggle="modal" data-target="#myModal">Login</a>
+        &nbsp;&bull;&nbsp;
+        <a routerLink="#" data-toggle="modal" data-target="#creditModal">Credits</a>
+      </span>
+      &nbsp;
     </div>
+  </div>
 
 </nav>
 <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="search-icon"><i class="fa fa-search"></i></span>
-    </div>
-    <input [(ngModel)]="query" (keyup.enter)="this.enterPressed()" class="form-control" placeholder="Search for a movie or actor" aria-label="Search for a movie or actor" aria-describedby="search-icon">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="search-icon"><i class="fa fa-search"></i></span>
+  </div>
+  <input [(ngModel)]="query" (keyup.enter)="this.enterPressed()" class="form-control" placeholder="Search for a movie or actor"
+    aria-label="Search for a movie or actor" aria-describedby="search-icon">
 </div>
 <!-- Credit Modal -->
 <div class="modal fade" id="creditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,8 +50,10 @@
         <p>#theFanatics wish to thank and credit the following:</p>
         <ul>
           <li>Genesis Bonds for her love and inspiration.</li>
-          <li><a class="credit-link" routerLink="https://www.themoviedb.org/">The Movie DB</a> for providing the base API movie data.</li>
-          <li><a class="credit-link" routerLink="http://www.omdbapi.com/">The Open Movie Database</a> for prividing additional API movie data.</li>
+          <li><a class="credit-link" routerLink="https://www.themoviedb.org/">The Movie DB</a> for providing the base
+            API movie data.</li>
+          <li><a class="credit-link" routerLink="http://www.omdbapi.com/">The Open Movie Database</a> for prividing
+            additional API movie data.</li>
         </ul>
         <hr>
         <p>#theFanatics are:</p>
@@ -80,28 +84,30 @@
         <h4><span class="glyphicon glyphicon-lock"></span> Login {{output}}</h4>
       </div>
       <div *ngIf="this.error" class="alert alert-danger" role="alert">
-          Invalid Username or Password. Please try again.
+        Invalid Username or Password. Please try again.
       </div>
       <div class="modal-body" style="padding:40px 50px;">
         <form role="form">
           <div class="form-group">
             <label for="username"><span class="fa fa-user"></span> Username</label>
             <br>
-            <input type="text" [(ngModel)]="username" name="username" class='form-control col-6' placeholder='Enter Username' size="35">
+            <input type="text" [(ngModel)]="username" name="username" class='form-control col-6' placeholder='Enter Username'
+              size="35">
           </div>
           <div class="form-group">
             <label for="password"><span class="fa fa-unlock-alt"></span> Password</label>
             <br>
-            <input type="password" [(ngModel)]="password" name="password" class='form-control col-6' placeholder='Enter Password' size="35">
+            <input type="password" [(ngModel)]="password" name="password" class='form-control col-6' placeholder='Enter Password'
+              size="35">
           </div>
-          
+
           <button class="btn btn-submit" (click)="login()">Login</button>
-          
+
         </form>
       </div>
       <div class="modal-footer">
         <button type="submit" #cancelBtn class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Cancel</button>
       </div>
-  </div>
+    </div>
   </div>
 </div>

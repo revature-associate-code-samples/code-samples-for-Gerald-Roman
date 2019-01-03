@@ -44,16 +44,15 @@ export class HeaderComponent implements OnInit {
     this.loginService.validateUser(this.username, this.password).subscribe(
       (user) => {
         this.currentUser = new User(user.id,
-                            user.username,
-                            user.email,
-                            user.password,
-                            user.token,
-                            user.firstname,
-                            user.lastname);
+          user.username,
+          user.email,
+          user.password,
+          user.token,
+          user.firstname,
+          user.lastname);
         this.error = false;
 
         if (this.currentUser == null || this.currentUser === undefined) {
-          // console.log('Invalid Credentials' + this.username);
           this.output = 'Invalid Credentials';
         } else {
           this.closeBtn.nativeElement.click();
@@ -63,7 +62,7 @@ export class HeaderComponent implements OnInit {
       },
       err => {
         this.error = true;
-        setTimeout( () => { this.error = false; }, 4000 );
+        setTimeout(() => { this.error = false; }, 4000);
       }
     );
   }
